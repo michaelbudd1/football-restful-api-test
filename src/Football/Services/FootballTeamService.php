@@ -8,8 +8,9 @@ use App\Football\Interfaces\UserId;
 use App\Football\League\Interfaces\LeagueId;
 use App\Football\Services\Interfaces\FootballTeamService as FootballTeamServiceInterface;
 use App\Football\Team\Models\Interfaces\Team as TeamInterface;
-use App\Football\Team\Models\Interfaces\TeamId;
+use App\Football\Team\Models\Interfaces\TeamId as TeamIdInterface;
 use App\Football\Team\Models\Team as TeamModel;
+use App\Football\Team\Models\TeamId;
 use App\Repository\LeagueRepository;
 use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\Collection;
@@ -50,7 +51,7 @@ final class FootballTeamService implements FootballTeamServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function storeTeam(TeamInterface $teamModel, UserId $userId): void
+    public function storeTeam(TeamInterface $teamModel, UserId $userId): TeamIdInterface
     {
         $team = new Team();
 
@@ -60,6 +61,8 @@ final class FootballTeamService implements FootballTeamServiceInterface
 
         $this->entityManager->persist($team);
         $this->entityManager->flush();
+
+        return new TeamId($team->getId());
     }
 
     /**
@@ -78,7 +81,7 @@ final class FootballTeamService implements FootballTeamServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function updateTeam(TeamId $teamId, TeamInterface $team, UserId $userId): void
+    public function updateTeam(TeamIdInterface $teamId, TeamInterface $team, UserId $userId): void
     {
         $teamEntity = $this->teamRepository->find($teamId->toInt());
 

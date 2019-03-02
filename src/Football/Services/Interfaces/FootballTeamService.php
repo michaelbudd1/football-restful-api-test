@@ -15,9 +15,9 @@ interface FootballTeamService
      * @param Team   $team
      * @param UserId $userId
      *
-     * @return void
+     * @return TeamId
      */
-    public function storeTeam(Team $team, UserId $userId): void;
+    public function storeTeam(Team $team, UserId $userId): TeamId;
 
     /**
      * @param LeagueId $leagueId

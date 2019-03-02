@@ -26,6 +26,8 @@ final class Update extends APIController
     {
         try {
             $footballTeam = Team::fromRequest($request);
+            $footballTeam = $footballTeam->cloneWithId($teamId);
+
             $userId       = $this->userId($request);
 
             $this->footballTeamService->updateTeam($teamId, $footballTeam, $userId);

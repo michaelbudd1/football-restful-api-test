@@ -26,7 +26,9 @@ final class Create extends APIController
             $footballTeam = Team::fromRequest($request);
             $userId       = $this->userId($request);
 
-            $this->footballTeamService->storeTeam($footballTeam, $userId);
+            $teamId = $this->footballTeamService->storeTeam($footballTeam, $userId);
+
+            $footballTeam = $footballTeam->cloneWithId($teamId);
         } catch (IllegalTeamName $exception) {
             return new Response($exception->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }

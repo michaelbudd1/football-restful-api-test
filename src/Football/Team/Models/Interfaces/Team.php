@@ -26,6 +26,11 @@ interface Team
     public static function fromRequest(Request $request): Team;
 
     /**
+     * @return TeamId
+     */
+    public function teamId(): TeamId;
+
+    /**
      * @param TeamEntity $team
      *
      * @return Team
@@ -36,4 +41,11 @@ interface Team
      * @return array
      */
     public function toArray(): array;
+
+    /**
+     * @param TeamId $teamId
+     *
+     * @return Team
+     */
+    public function cloneWithId(TeamId $teamId): Team;
 }
