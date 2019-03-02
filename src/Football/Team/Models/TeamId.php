@@ -21,7 +21,7 @@ final class TeamId implements TeamIdInterface
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function toInt(): int
     {

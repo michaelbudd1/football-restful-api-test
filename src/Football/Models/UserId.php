@@ -21,7 +21,7 @@ final class UserId implements UserIdInterface
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function toInt(): int
     {

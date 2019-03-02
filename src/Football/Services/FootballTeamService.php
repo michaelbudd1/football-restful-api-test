@@ -43,9 +43,9 @@ final class FootballTeamService implements FootballTeamServiceInterface
         LeagueRepository $leagueRepository,
         TeamRepository $teamRepository
     ) {
-        $this->entityManager = $entityManager;
+        $this->entityManager    = $entityManager;
         $this->leagueRepository = $leagueRepository;
-        $this->teamRepository = $teamRepository;
+        $this->teamRepository   = $teamRepository;
     }
 
     /**

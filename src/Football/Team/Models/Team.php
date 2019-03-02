@@ -79,7 +79,7 @@ final class Team implements TeamInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray(): array
     {
@@ -105,9 +105,7 @@ final class Team implements TeamInterface
     }
 
     /**
-     * @param TeamIdInterface $teamId
-     *
-     * @return TeamInterface
+     * {@inheritdoc}
      */
     public function cloneWithId(TeamIdInterface $teamId): TeamInterface
     {
