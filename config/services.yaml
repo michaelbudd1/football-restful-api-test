@@ -25,3 +25,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Authenticators
+
+    Symfony\Component\Security\Guard\AuthenticatorInterface:
+        class: App\Security\JWTCustomAuthenticator
+
+    # Param Converters
+
+    app.param_converter.league_id:
+        class: App\Football\ParamConverters\LeagueIdParamConverter
+        tags:
+        - { name: request.param_converter, converter: league_id_converter }

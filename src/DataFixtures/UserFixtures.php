@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\DataFixtures;
 
@@ -8,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Firebase\JWT\JWT;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends Fixture
+final class UserFixtures extends Fixture
 {
     /**
      * @var UserPasswordEncoderInterface
@@ -23,6 +24,9 @@ class UserFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $email = 'michaelbudd6@gmail.com';
@@ -32,8 +36,7 @@ class UserFixtures extends Fixture
             'email'  => $email,
         ];
 
-        $jwt = JWT::encode($token, getenv('JWT_TOKEN_KEY'));
-
+        $jwt  = JWT::encode($token, getenv('JWT_TOKEN_KEY'));
 
         $user = new User();
         $user->setEmail($email);
